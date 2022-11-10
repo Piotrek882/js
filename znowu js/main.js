@@ -95,12 +95,23 @@
 // }
 
 //przykład 12
-const hasTicket = 0; //false
-const moreThan15Years = true;
-const myFamily = false;
+// const hasTicket = 0; //false
+// const moreThan15Years = true;
+// const myFamily = false;
 
-if (hasTicket && moreThan15Years || myFamily){
-    console.log("wchodzisz na dyskotekę")
-}else{
-    console.log("nie wchodzisz");
-}
+// if (hasTicket && moreThan15Years || myFamily){
+//     console.log("wchodzisz na dyskotekę")
+// }else{
+//     console.log("nie wchodzisz");
+// }
+
+//przykład 13
+// const hasTicket = 0; //false
+// const moreThan15Years = true;
+// const myFamily = false;
+
+// if (hasTicket || moreThan15Years && myFamily){
+//     console.log("wchodzisz na dyskotekę")
+// }else{
+//     console.log("nie wchodzisz");
+// }
