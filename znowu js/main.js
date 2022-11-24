@@ -221,7 +221,7 @@
 
 //a ? b : c;
 
-//czyli warunek ? wykonaj mnie, jeśli warunek true : wykonaj mnie, jeśli warunek false 
+//czyli warunek ? wykonaj mnie, jeśli warunek true : wykonaj mnie, jeśli warunek false
 
 // const score = 100;
 // 20 == "20" && score ? console.log("wykonaj się, bo prawda") : console.log("wykonaj się, jesli warunek nie jest prawdziwy")
@@ -245,3 +245,25 @@
 //////// przykład 20
 // const playerName = "Warrior";
 // console.log(` Witaj ${playerName ? playerName : "wojowniku"}`);
+
+////////////////////////////////////// pętle //////////////////////////////////////////////
+// Pętla opiera się na sprawdzeniu warunku - wykonujemy blok kodu tyle razy ile warunek jest warunek (jest albo prawdziwy, albo nie)
+// Może się ona wykonywać: i w nieskończoność, aleteż wcale
+// Może być wykonywana wielokrotnie
+// Można ja wykonywa na tablicy, czyli obiekcie
+
+// I. Pętla for
+/* 
+
+definicja: for (inicjalizacja ieratora; warunek; zwiększenie iteratora){
+    blok kodu - konkatenacja;
+}
+// inicjalizacja iteratora - następuje w całym procesie tylko raz
+
+*/
+
+// Przykład
+
+for (let i = 0; i <=2; i++){
+    console.log("wyświetlenie " + i);
+}
