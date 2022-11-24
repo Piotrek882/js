@@ -264,6 +264,172 @@ definicja: for (inicjalizacja ieratora; warunek; zwiększenie iteratora){
 
 // Przykład
 
-for (let i = 0; i <=2; i++){
-    console.log("wyświetlenie " + i);
+// for (let i = 0; i <=2; i++){
+//     console.log("wyświetlenie " + i);
+// }
+
+// przykład 2
+
+// for (let i = 0; "a"; i++){
+//     console.log("wyświetlenie " + i);
+// }
+
+// pętla nieskończona - warunek cały czas prawdziwy
+
+// wykonanie kodu - blok kodu. Przy fałszywym warunku program wychodzi z pętli
+
+// for (let i = 0; i > 10; i++){
+//     console.log("wyświetlenie " + i);
+// }
+
+// iterator - ...
+
+// druga metoda zapisu for
+
+// let i = 0;
+
+// for (; i < 10;){
+//     console.log("wyświetlenie " + i);
+//     i++;
+// }
+
+// zapis przypomina while, ale trzeba dać dwa średniki
+
+// for (let i = 0; i < 10; i+=2 ) {
+//   console.log("wyświetlenie " + i);
+// }
+
+// II. Pętla while
+//  szablon 
+/*
+
+while (warunek) {
+    blok kodu    
 }
+
+a)
+
+while (true) {
+    console.log("działa")
+}
+
+pętla jest nieskończona ^
+
+b)
+
+while (false) {
+    console.log("działa")
+}
+
+pętla nie wykona się ani razu ^
+
+
+c)
+
+while (let i = 0; i < 10; i+= 2) {
+    console.log("wyswietlanie" + i);
+}
+
+pętla wykona się określoną ilość razy ^
+
+let number = 0;
+
+while ( number < 10) {
+    number++;
+    console.log(number);
+}
+
+pętla wykona się określoną ilość razy ^
+
+let money = 2200;
+
+while (money >= 1849) {
+
+    console.log("Mam aż " + money + " złotych. Kupię PlayStation 5 Digital !!!");
+    money -= 50;
+
+}
+
+
+let money = 2200;
+
+while (money >= 1849) {
+
+    console.log("Mam aż " + money + " złotych. Kupię PlayStation 5 Digital !!!");
+    money -= 50;
+    
+}
+alert(`za ${money} złotych, już PlayStation Digital nie kupię :(`);
+
+*/
+
+// Kolejny przykład
+/*
+
+let gasoline = 6;
+let km = 0;
+
+while (gasoline--) {
+    km += 18;
+    console.log("Przejechaliśmy " + km + " kilometrów. Zostało nam jeszcze " + gasoline + "litrów paliwa.")
+    if (gasoline == 0) {
+    console.log("Nie masz juz bęzyny. Koniec drogi.")
+}
+}
+
+*/
+
+// III. Pętla  do while
+// Gdyby warunek by prawdziwy to petla byłaby nieskończona
+// let study = "nie jestem chory";
+
+// do {
+//     console.log("Idę do szkoły");
+// } while (study === true);
+
+// pętla w pętli
+// for (let i = 0; i < 3; i++){
+//     for (let j = 0; j < 10; j++){
+//         console.log(`zmienna i czyli ${i} pomnożona przez zmienną j czyli ${j} daje wynik ${i * j}`)
+//     }
+// }
+
+// for (let i = 0; i < 3; i++){
+//     for (let j = 0; j > 10; j++){ // nie wykona sie ani razu, warunek nie został spełniony
+//         console.log(`zmienna i czyli ${i} pomnożona przez zmienną j czyli ${j} daje wynik ${i * j}`)
+//     }
+// }
+
+// IV. Pętla na tablicy 
+
+// const userAge = [19, 18, 15, 45, 34, 33, 25]
+
+// for (let i = 0; i < userAge.length; i++){
+//     console.log(`użytkownik o indeksie ${i} jest w wieku ${userAge[i]}`)
+// }
+
+// inny sposób:
+// console.log('użytkownik o indexie' + i + 'jest w wieku' + userAge[i]);
+
+// zaczynam index od 1 dodając i+1  >>>>>
+
+// const userAge = [19, 18, 15, 45, 34, 33, 25]
+
+// for (let i = 0; i < userAge.length; i++){
+//     console.log(`użytkownik o indeksie ${i + 1} jest w wieku ${userAge[i]}`)
+// }
+
+// kolejny przykład
+
+// const userDateBirth = [2000, 1999, 2007, 2010, 2015];
+// const currentYear = 2022;
+
+// for (let i = 0; i < userDateBirth.length; i++){
+//     const userAge = currentYear - userDateBirth[i];
+//     console.log(userAge);
+// }
+
+// inny sposób
+// console.log(`wiek użytkownika numer ${i +1} to {userAge}`)
+
+// z imionami
