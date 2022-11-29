@@ -432,4 +432,40 @@ while (gasoline--) {
 // inny sposób
 // console.log(`wiek użytkownika numer ${i +1} to {userAge}`)
 
-// z imionami
+/* 
+kolejny przykład
+
+const guest = ["nauczyciel","programista","emeryt","sprzątaczka","sprzedawca"];
+
+for (let i = 0; i < guest.length; i++){
+    if(guest[i] === "nauczyciel"){
+        console.log("nie ma już miejsca")
+        }else if (guest[i] === "programista"){
+            console.log("Ojej jaka szkoda nie ma już miejsca");
+    }else {
+        console.log("Witamy " + guest[i] + ", serdecznie zapraszamy")
+    }
+}
+
+*/
+
+// pętla for - of
+//  (ES6) - nowy
+// iteracja po wszystkich elementach
+// i -> to konkretny element tablicy(za każdym razem wykonywany w petli )
+// const za każdym razem jest czymś innym
+
+// const colors = ["red", "green", "blue", "yellow"];
+
+// for(const i of colors){
+//     console.log(i);
+// }
+
+
+// kolejny przykład
+
+const colors = ["red", "green", "blue", "yellow"];
+
+for(const color of colors){
+    console.log("Mój ulubiony kolor to: " + color);
+}
