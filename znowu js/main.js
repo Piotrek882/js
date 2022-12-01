@@ -469,3 +469,69 @@ for (let i = 0; i < guest.length; i++){
 // for(const color of colors){
 //     console.log("Mój ulubiony kolor to: " + color);
 // }
+
+////////////////////////////////////////////////// TABLICE /////////////////////////////////////////////////////
+//  tablica to obiekt złożony, wbudowany - zatem ma właściwości i metody, uporzadkowany (kolejność jest ważna), ma indeks (liczony od zera)
+// wystarczy wpisać [] i mamy tablicę
+// tablicę przypisujemy do zmiennej, żeby nie znikła
+
+// Przykład 1
+// const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
+// 2. mozemy utworzyć pustą(nie koniecznie pustą) tablicę, a następnie podawać elementy przez odwołanie do ineksu
+/*
+const cityList = [];
+cityList[0] = 'Gliwice';
+cityList[1] = 'Warszawa';
+*/
+
+//  Tworzenie tablicy za pomocą kostruktora
+// pamiętamy, że mamy: new String; new Number; new Boolean - tak możemy storzyć obiekt, odwzorowujący typ prosty - tworzenie pustej tablicy
+
+// A. const items = []; // tworznie tablicy za pomoca literału pustej tablicy - Lepsze rozwiązanie
+const items = [];
+// B.
+// const gameItems = new Array(); // Tworzenie za pomocą konstruktora pustej tablicy
+// za pomocą słowa new tworzymy nowy obiekt i na nim wywołujemy funkcję konstruktora
+// za pomocą konstruktora możemy podać argumenty
+const colors = new Array("red", "blue");
+colors[2] = "green"; // dodajemy trzeci element na drugim indeksie
+// length - właściwość
+// Powstała instancja tablicy o określonych właściwościach i metodach 
+// instancja często określana jest mianem obiektu
+// Sprawdzanie typu
+
+console.log(typeof colors);
+
+// Dlaczego zmienna const przy przypisaniu do tablica? // Ponieważ nie chcemy aby tablica została usunięta lub zniszczona
+const myArrayConst = [];
+let myArrayLet = [];
+
+myArrayConst[0] = "pierwszy const";
+myArrayLet[0] = "pierwszy let";
+
+// myArrayConst = "coś innego"; //Błąd
+myArrayLet = "cos innego"; // Brak błędu
+
+// tablica może przechowywać praktycznie wszystko
+const differentValues = ["string", {}, ["jeden", "dwa"], null]
+
+// Odwołanie do elementów tablicy
+const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
+
+const popularName = nameList[2];
+
+console.log(nameList[1]);
+nameList[4] = "Tomasz";
+console.log(nameList[2] === "Katarzyna"); // Sprawdzam, czy nameList o indexie 2 jest równe "Katarzyna" // jezeli byłoby równe to będzie true // ale jest false
+
+// tworzenie nowych elementów i modyfikowanie istniejacych (w tablicy)
+// Za pomocą indexu przypisujemy wartość
+// A. Jeśli stworzymy index, który istnieje to nadpisujemy
+// B. Jeśli nie to dodaję
+
+nameList[15] = "Tom";
+console.log(nameList)
+// Stworzyliśmy 11 pustych elementów undefined...
+
+// Usuwanie elementów z tablicy
+
