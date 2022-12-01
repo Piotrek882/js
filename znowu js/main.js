@@ -464,8 +464,8 @@ for (let i = 0; i < guest.length; i++){
 
 // kolejny przykład
 
-const colors = ["red", "green", "blue", "yellow"];
+// const colors = ["red", "green", "blue", "yellow"];
 
-for(const color of colors){
-    console.log("Mój ulubiony kolor to: " + color);
-}
+// for(const color of colors){
+//     console.log("Mój ulubiony kolor to: " + color);
+// }
