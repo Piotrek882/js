@@ -513,10 +513,10 @@ myArrayLet[0] = "pierwszy let";
 myArrayLet = "cos innego"; // Brak błędu
 
 // tablica może przechowywać praktycznie wszystko
-const differentValues = ["string", {}, ["jeden", "dwa"], null]
+const differentValues = ["string", {}, ["jeden", "dwa"], null];
 
 // Odwołanie do elementów tablicy
-const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
+// const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
 
 const popularName = nameList[2];
 
@@ -534,4 +534,58 @@ console.log(nameList)
 // Stworzyliśmy 11 pustych elementów undefined...
 
 // Usuwanie elementów z tablicy
+//////////////////////////////////////////////////
 
+const cars = ["volvo", "ford", "skoda", "nissan"];
+// cars.splice(0,1)
+
+cars.splice(3, 1, 'rover'); //usuń od trzeciego indexu i zastąp rover'em
+
+cars.splice(0, 2, 'lamborghini', 'tesla'); // mogę usunąć kilka elementów
+
+cars.splice(0, 0, 'audi', 'dacia'); 
+
+// sort 
+cars.sort()
+
+// indexOf
+
+nameList.indexOf("Kasia");
+nameList.indexOf("Kasi"); // jeśl nie ma takiego stringa na indexie to pojawia się -1;
+
+["jakiś człowiek", 18, null, 18].indexOf(18); // na indexie 1 znalazł ale nie sprawda dalej
+["jakiś człowiek", 18, null, 18].lastIndexOf(18); // Tu szukam od końca
+["jakiś człowiek", 18, null, 18].lastIndexOf(800); // pokazuje -1
+
+// metoda includes
+'Pawel'.includes('w'); // odpowiedź true
+
+'Pawel'.includes('s'); // odpowiedź false
+
+const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
+nameList.includes("Kasia"); // odpowiedź true;
+
+[33, 44, 55, 66].includes(54); // odpowiedź false
+
+// metoda join
+// nic nie modyfikuje
+const item = ['abcd', 'efgh', 'ijkl', 'mnop'];
+item.join()
+item.join("---");
+item.join(" - za 7 minut przerwa");
+
+
+// metoda reverse
+// metoda destrukcyjna - zmienia tablice na której pracuję
+
+const cities = ['Gliwice', 'Zabrze', 'Pyskowice', 'Paryż'];
+['Gliwice', 'Zabrze', 'Pyskowice', 'Paryż'].reverse();
+cities.reverse();
+
+//  metoda split
+const letters = "rioueioutouriu".split(""); // rozdziela na pojednycze litery
+
+"rioueioutouriu".split( ' - ');
+"rioueioutouriu".split(',', 3); 
+
+//  funkcje
