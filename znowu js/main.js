@@ -476,7 +476,7 @@ for (let i = 0; i < guest.length; i++){
 // tablicę przypisujemy do zmiennej, żeby nie znikła
 
 // Przykład 1
-// const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
+const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
 // 2. mozemy utworzyć pustą(nie koniecznie pustą) tablicę, a następnie podawać elementy przez odwołanie do ineksu
 /*
 const cityList = [];
@@ -562,7 +562,7 @@ nameList.indexOf("Kasi"); // jeśl nie ma takiego stringa na indexie to pojawia 
 
 'Pawel'.includes('s'); // odpowiedź false
 
-const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
+//  const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
 nameList.includes("Kasia"); // odpowiedź true;
 
 [33, 44, 55, 66].includes(54); // odpowiedź false
@@ -570,7 +570,7 @@ nameList.includes("Kasia"); // odpowiedź true;
 // metoda join
 // nic nie modyfikuje
 const item = ['abcd', 'efgh', 'ijkl', 'mnop'];
-item.join()
+item.join();
 item.join("---");
 item.join(" - za 7 minut przerwa");
 
@@ -584,8 +584,55 @@ cities.reverse();
 
 //  metoda split
 const letters = "rioueioutouriu".split(""); // rozdziela na pojednycze litery
-
 "rioueioutouriu".split( ' - ');
-"rioueioutouriu".split(',', 3); 
+"rioueioutouriu".split(',', 3);
 
 //  funkcje
+// są obiektami (jak tablice)
+// funkcje można wywołać (jedyny obiekt, który można wywołać)
+// to małe programy, które coś robią lub zwracają
+
+// Funkcja może
+// modyfikować program lub nie modyfikować programu, przetwarzać elementy i zwracać jakąś wartość (służy  do tego słowo RETURN)
+// funkcje są wielokrotnego użytku
+// można funkcje:
+// a. przypisać do zmiennych,
+// b. podać w innej funkcji,
+// c. dać jako wartość zawracaną z funkcji
+
+// Sposoby tworzenia funkcji:
+// 1. - wyrażenie funkcyjne - funkcja bez nazwy (funkcja anonimowa - ma tylko słowo function - zmienna ma nazwę ale funkcja nie), do której odwołujemy się za pomocą zmiennej - zmienną tworzymy za pomocą const (choć można za pomocą let)
+// szkielet funkcji - definicja
+/*
+const nazwaFunkcji = function(){};
+*/
+// przykład
+// const showMessage = function(message){
+//     console.log(message);
+// }
+
+// showMessage(); // brak argumentu // wywołanie funkcji przez jej nazwę, a dokładniej zmiennej, do której jest pzrypisana
+// const showMessage = function(message){
+//     console.log(message);
+// }
+
+// showMessage('Wywołałem funkcję showMessage'); // argument
+/* 
+const showMessage = function(message){
+    console.log('Wywołałem funkcję showMessage');
+}
+
+showMessage();
+*/
+// 2. - deklaracja funkcji - najpierw function, następie nazwa funkcji
+//szkielet
+
+// function nazwaFunkcji(){};
+
+// Przykład
+
+function addNumbers(number1, number2){
+    return number1 + number2;
+}
+
+addNumbers(2, 4);
