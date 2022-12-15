@@ -2,7 +2,7 @@
 // 1. zmienna + wartość
 // 2. if (warunek){ciało warunku}
 
-//////prykład 1
+//////przykład 1
 
 // const condition = 2;
 
@@ -631,8 +631,74 @@ showMessage();
 
 // Przykład
 
-function addNumbers(number1, number2){
-    return number1 + number2;
+// function addNumbers(number1, number2){
+//     return number1 + number2;
+// }
+
+// addNumbers(2, 4);
+
+function addNumbers(x, y){
+    return x + y;
 }
 
-addNumbers(2, 4);
+addNumbers('aaa', 'bbb');
+
+// nieprawidłowości działania funkcji - uruchomienie przed deklaracją - działa (nie jest to zalecane)
+showCourseName()
+function showCourseName(){
+    console.log("Moja funkcja");
+}
+// na początku powinna byc deklaracja dopiero potem wywołanie
+
+// spróbujemy wywołać funkcje rpzed deklaracją przy pierwszym sposobie deklaracji
+/*
+showCourseName()
+const showCourseName1 = function () {
+    console.log("Moja funkcja wg pierwszeo sposobu");
+}
+*/
+// w tym sposobie wywołanie funkcji przed deklaracją jest błędem
+
+// 3. - konstruktor 
+// skielet
+/*
+const nazwaFunkcjiCoRobi = new Function();
+*/
+// powyższa funkcja jest pusta // rzadko używana
+
+// przykład 
+const textAlert = new Function("text", "alert(text)");
+textAlert("działa");
+// new Function() - funkcja konstruktora, funkcja ogólna
+/*
+developer korysta najczęściej z:
+1. W duzych projektach uzywa pierwszego posobu tworznia funkcji(wyrażenia funkcyjnego)
+2. W małych projektów uzywa 1 lub 2 sposobu
+3. Omija trzeci sposób
+*/
+// 4. - funkcja strzałkowa - ES6
+// skielet - definicja:
+/*
+const nazwaFunkcjiCoRobi = () => {}; 
+*/
+// jest zawsze anonimowa
+// jest krótsza
+// używa się jej do prostych zadań
+// przykład:
+
+// const showMeTextArrowFunction = (text) => {console.log(text)};
+// showMeTextArrowFunction("hej");
+
+// I jeśli dajemy jeden parametr to nie musimy dawać nawiasów () i {}
+// II nawiasy muszą być jeśli: 
+/** 
+ * nie przyjmujemy żadnego prametru
+ * przekazujemy więcej niż jeden parametr
+ */
+////////////////////////////////////////////////////////////////////
+const showMeTextArrowFunction = text => console.log(text);
+showMeTextArrowFunction("hej");
+////////////////////////////////////////////////////////////////////
+const showMeTextArrowFunction1 = () => {console.log()};
+showMeTextArrowFunction("hej");
+////////////////////////////////////////////////////////////////////
