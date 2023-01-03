@@ -786,3 +786,97 @@ const addTwoNumber = (x = 0, y = 5) => {
 
 addTwoNumber(4); // dodajemy do 5
 // addTwoNumber(4, 7); // x + y = 11 // 5 liczy się tylko wtedy, gdy nie wpiszemy drugiej liczby
+
+//callback
+// funkcja przekazywana jako parametr do innej funkcji wyższego rzędu
+
+function count(x, callback){
+    return callback(x);
+}
+
+function addOne(item) {
+    item++
+    console.log(item);
+    return item;
+}
+
+function substractOne(number){
+    number--
+    console.log(number);
+    return number;
+}
+
+const result = count(6, addOne);
+count(5, addOne);
+
+// przykład 2
+// addEventListener - metoda czekania na zdarzenie, może być ustawiana na różnych elementach html
+document.body.addEventListener("click", function(){
+    console.log("click")
+})
+
+// window.addEventListener("click", function(){
+//     console.log("click");
+// })
+
+// metoda oczekuje dwóch rzeczy:
+// na co ma czekać np. click
+// co ma zrobić
+function showClick(){
+    console.log("click");
+}
+window.addEventListener("click", showClick);
+
+// kolejny przykład
+// setInterval - funkcja wbudowana, która sama wywołuje się co jakiś określony czas
+// setInterval(() => console.log("minely 2 sekundy"), 2000);
+
+// inny przyklad 
+const showTime = () => {
+    console.log("minely dwie sekundy");
+}
+
+setInterval(showTime, 2000);
+
+// kolejny przykład
+// jako argument przekazuje funkcje anonimowa strzałkową(najczęściej)
+const userAge1 = [20, 30 , 69, 17, 90, 16, 72];
+// userAge1.forEach(userAge1 => console.log(`Wiek uzytkowanika to ${userAge1}`));
+
+// inny zapis
+// userAge1.forEach(userAge1 => {console.log(`Wiek uzytkowanika to ${userAge1}`)});
+
+userAge1.forEach((userAge1, x) => {console.log(`Wiek uzytkowanika to ${userAge1}`)});
+
+//userAge2.frEach(function(userAge2){console.log("Wiek użytkownika to " + userAge2)});
+
+// obiekt arguments
+// podobny do tablicy
+// można się do niego odwołać za pomocą []
+// ma length
+// nie ma metod tablicy
+// zaweira nformację ile argumentów zostało przesłane
+// obiekt tablicopodobny
+
+// przykład
+
+// const showArguments = function(){
+//     console.log(arguments)
+// }
+
+// showArguments("1", null, {});
+
+// const showArguments = function () {
+//     console.log(arguments[0])
+// }
+// showArguments("12", null, {})
+
+// const showArguments = function () {
+//     console.log(arguments.length)
+// }
+// showArguments("12", null, {})
+
+const showArguments = function () {
+    console.log(Array.isArray(arguments))
+}
+showArguments("12", null, {})
