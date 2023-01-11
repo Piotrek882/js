@@ -1,0 +1,79 @@
+::-moz-selection {  /* zaznaczanie dla firefox'a */
+    background: rgb(189, 189, 189);
+    color: rgb(77, 77, 77);
+}
+  
+::selection {
+    background: rgb(189, 189, 189);
+    color: rgb(77, 77, 77);
+}
+
+html{
+    background-color: rgb(42, 41, 41);
+}
+body * {
+    user-select: none;
+}
+body {
+    box-sizing: border-box;
+    height: 100%;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+}
+main{
+    flex-wrap: wrap;
+    display: flex;
+    flex-basis: 100%;
+    background-color: rgb(72, 71, 71);
+    flex-direction: column;
+}
+#okno {
+    flex-wrap: wrap;
+    background-color: rgb(126, 126, 126);
+    height: 100%;
+    flex-basis: 100%;
+    flex-direction: row;
+}
+#klawiatura {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+}
+#klawiatura > article {
+    color: white;
+    font: bold ;
+    font-size: 1.3em;
+    display: flex;
+    margin: 0.5em;
+    padding: 1em;
+    border: 2px solid rgb(170, 170, 170);
+    border-radius: 2em;
+    flex-wrap: wrap;
+    flex-basis: 20%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0.3em 0.3em rgba(0, 0, 0, 0.478);
+}
+#klawiatura > article:hover {
+    background-color: rgb(31, 31, 31);
+    color: rgb(126, 126, 126);
+    transition: background, color 0.3s ease-in-out;
+    border: rgba(42, 41, 41, 0);
+}
+footer {
+    display: flex;
+    color: rgb(126, 126, 126);
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+}
+#pole {
+    user-select: text;
+    padding: 0em;
+    font-size: 7em;
+    margin: 0em;
+}
