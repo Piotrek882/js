@@ -880,3 +880,94 @@ const showArguments = function () {
     console.log(Array.isArray(arguments))
 }
 showArguments("12", null, {})
+
+const addAllNumbers = function (){
+    let result = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        result = arguments[i];
+        
+    }
+    return result
+}
+
+function showInfoAboutUser (age, name, sex) {
+    if(arguments.length === 0){
+        console.log("nie ma żadnych informacji o użytkowniku");
+    } else if (arguments.length === 1) {
+        console.log("Użytkownik ma " + age + " lat");
+    } else if (arguments.length === 2) {
+        console.log(`Użytkownik ma ${age} lat i ma na imie ${name}`);
+    } else {
+        console.log(`Użytkownik ma ${age} lat i ma na imię ${name} i jest ${sex}`);
+    }
+}
+showInfoAboutUser(2, 'GDFG', 'M' );
+
+// operator rest
+// umieszcza elementy w tablicy
+// tworzy tablice z podanych elementów
+// budowa: ...nazwa // (np. ...items)
+
+// przykład
+// function showAllArguments(...items){
+//     console.log(items);
+//     return items;
+// }
+// showAllArguments("1", null, true, 2, 'd');
+
+function showAllArguments(...args){
+    console.log(args[5]);
+    console.log(arguments[5]); // porównanie z rest
+    return args;
+}
+showAllArguments("1", null, true, 2, 'd');
+
+// kolejny przykład
+
+// function addAllWords(...words){
+//     let text = ""; // pusty string
+//     for (let i = 0; i < words.length; i++) {
+//         text += `${words[i]}`;        
+//     }
+//     console.log(text);
+// }
+
+// addAllWords();
+
+// function addAllWords(...words){
+//     let text = "jakis tekst "; // pusty string
+//     for (let i = 0; i < words.length; i++) {
+//         text += `${words[i]}`;        
+//     }
+//     console.log(text);
+// }
+
+// addAllWords("ghdgjfhsdj", "yftyuysyftgdyugfy", 10, "hdhkghklhasdafh");
+
+
+// function addAllWords(...words){
+//     let text = ""; // pusty string
+//     words.forEach(function(word){
+
+//     });{
+//         text += `${words[i]} - `;
+//     }
+//     console.log(text);
+// }
+
+// addAllWords(' slowo 1', ' slowo 2');
+
+// kolejny przykład
+function addWords(...words){
+    let txt = "";
+    words.forEach(word => txt += `${word}-`)
+    console.log(txt);
+}
+
+console.log(addWords("slowo 1", 'slowo 2', 4));
+
+function showUsers(owner, ...others) {
+    console.log((`Na imprezie był ${owner} ${others.length ? "oraz " +  others + ". " : ". "} `));
+}
+
+showUsers('user1', 'user2', 'user3');
