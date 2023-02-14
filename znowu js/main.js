@@ -971,3 +971,101 @@ function showUsers(owner, ...others) {
 }
 
 showUsers('user1', 'user2', 'user3');
+
+// showUsers('user1', 'user2', 'user3');
+
+// co to jest zakres?
+// zakres mówi gdzie dana zmienna jest widoczna bądź gdzie można z niej skorzystać
+// 1. zakres globalny (jeden)
+// 2. zakres loaklny (wiele):
+//      tworzony przez funkcje
+//      tworzony przez blok kodu(instrukcje warunkowe, pętle)
+// zakre zależy od tego, gdzie dana zmienna się znajduje
+
+// przykład 1
+// var userID = 102;
+// const colorID = 5;
+// let userAge = 20;
+
+// console.log(userID);
+// console.log(colorID);
+// console.log(userAge);
+
+// reguła: szukam w zakresie, w którym jestem, jeśli znalazłem nie idę dalej
+/*
+var userID = 102;
+const colorID = 5;
+
+userID = 200;
+colorID = 200;
+console.log(userID);
+console.log(colorID);
+*/
+
+// przyklad
+// const userName = "Adam";
+// function showName() {
+//     //userName = "Jan"; // - nie może tak być
+//     console.log(userName);
+// }
+// showName();
+// do zakresu globalnego można się dostać z lokalnego
+// zmienne można tak samo nazywać pod warunkiem, że znajdują się w róznych zakresach
+
+// koleny przykład
+// let userName = "Adam";
+// function showName() {
+//     userName = "Jan";
+//     userName = "Marysia";
+//     console.log(userName);
+// }
+// showName();
+
+let userName = "Adam";
+function showName() {
+    let userName = "Jan";
+    userName = "Marysia";
+    console.log(userName);
+}
+showName();
+console.log(userName);
+
+// zakres lokalny, funkcja
+// var - nie przestrzega zakresu lokalnego kodu choc przestrzega zakres lokalny funkcji
+
+// var varFun = "a";
+// let letFun = "b";
+// const constFun = "c";
+// // konsola wyswietla w zakresie globalnym
+
+// function variableInFunction(){
+//     var inFunction = "jestem";
+//     let varFun = 4;
+// }
+// variableInFunction();
+
+
+// var varFun = "a";
+// let letFun = "b";
+// const constFun = "c";
+
+// function variableInFunction(){
+//     var inFunction = "jestem";
+//     varFun = 4;
+//     console.log(inFunction);
+// }
+// variableInFunction();
+
+
+var varFun = "a";
+let letFun = "b";
+const constFun = "c";
+
+function variableInFunction(){
+    var inFunction = "jestem";
+    let varFun = 0;
+    varFun = 4;
+    console.log(varFun);
+    console.log(inFunction);
+}
+variableInFunction();
