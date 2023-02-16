@@ -1069,3 +1069,119 @@ function variableInFunction(){
     console.log(inFunction);
 }
 variableInFunction();
+
+
+// var varFun = "a";
+// let letFun = "b";
+// const constFun = "c";
+
+// function variableInFunction(){
+//     var inFunction = "jestem";
+//     let varFun = 0;
+//     const constFun = 5;
+//     function showVariable() {
+//         const constFun = "funkcja w funkcji";
+//         varFun = "nadpisuję wartość zmiennej z wyższego zakresu";
+//         console.log(varFun);
+//         console.log(letFun);
+//         console.log(constFun);
+//     }
+//     showVariable();
+// }
+// variableInFunction();
+
+// var varFun = "a";
+// let letFun = "b";
+// const constFun = "c";
+
+// function variableInFunction(){
+//     var inFunction = "jestem";
+//     let varFun = 0;
+
+//     function showVariable() {
+//         const constFun = "funkcja w funkcji";
+//         varFun = "nadpisuję wartość zmiennej z wyższego zakresu";
+//         console.log(varFun);
+//         console.log(letFun);
+//         console.log(constFun);
+//     }
+//     showVariable();
+// }
+// variableInFunction();
+
+// przykład
+
+// function calculate(a,b) {
+//     let number1 = a;
+//     let number2 = b;
+
+//     function add() {
+//         number2 = 10;
+//         console.log(number1 + number2);
+//     }
+//     add();
+// }
+// calculate(2,3);
+
+// function calculate(a,b) {
+//     let number1 = a;
+//     let number2 = b;
+
+//     function add(x, y) {
+//         let x = 10;
+//         console.log(x + y);
+//     }
+//     add(number1, number2);
+// }
+// calculate(2,3);
+
+// function calculate(a,b) {
+//     let number1 = a;
+//     let number2 = b;
+
+//     function add(x, y) {
+//         x = 10;
+//         console.log(x + y);
+//     }
+//     add(number1, number2);
+// }
+// const firstNumber = 8;
+// calculate(firstNumber, 3);
+
+// zakres lokalny jako blok kodu, czyli instrukcje warunkowe i pętle, obiekty
+
+// przykład
+/*
+let var1 = 1;
+const var2 = 2;
+var var2 = 3;
+
+{
+    let var1 = "wewnętrzny 1";
+    const var2 = "wewnętrzny 2";
+    var var3 = "wewnętrzny 3";
+    console.log(var1);
+    console.log(var2);
+    console.log(var3);
+    var1 = "wewnętrzny 1";
+    var2 = "wewnętrzny 2";
+    var3 = "wewnętrzny 3";
+}
+console.log(var1);
+console.log(var3);
+console.log(var2);
+*/
+
+// kolejny przyład
+const a = "A w zakresie globalnym";
+let b = "B w zakresie globalnym";
+var c = "C w zakresie globalnym";
+
+// if(true) {
+//     const a = "kasia w bloku kodu xd";
+//     console.log("a w bloku kodu to " + a);
+// }
+if(true){
+    var c = "Ania w bloku kodu";
+}
+console.log(c);
