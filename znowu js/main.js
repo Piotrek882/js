@@ -668,7 +668,7 @@ const nazwaFunkcjiCoRobi = new Function();
 
 // przykład 
 const textAlert = new Function("text", "alert(text)");
-textAlert("działa");
+// textAlert("działa");
 // new Function() - funkcja konstruktora, funkcja ogólna
 /*
 developer korysta najczęściej z:
@@ -1185,3 +1185,36 @@ if(true){
     var c = "Ania w bloku kodu";
 }
 console.log(c);
+
+//DOM - document object model
+// nie jest częścią js'a ale js umozliwia pracę z DOM
+// 1. pobieranie elementu
+// 2. modyfikowanie
+// 3. tworzenie, dodawanie, usuwanie
+// 4. nasłuchiwanie
+
+// document.body.h1 - tak nie robić
+// HTMLColection - obiekt tablicopodobny
+// metody zrobienia tablicy na obiekcie tablicopodobnym
+// 1.
+const imgs = Array.from(document.images);
+// 2.
+const imgs2 = [...document.images];
+
+// dwie metody pobierające:
+// 1. 
+document.querySelector("li:nth-child(3)");
+// 2.
+const firstElement = document.getElementById("first");
+document.getElementsByClassName("even");
+// to samo ale za pomocą wczesniejszej metody
+document.querySelector("#first");
+// metosy pobierajae wszystkie elementy:
+document.querySelectorAll("ul>li");
+// zwraca NodeList - obiekt tablicopodobny
+// document.querySelector("*ul>li");
+// * - oznacza dowolny element, który jest przed
+document.getElementsByTagName("li");
+document.getElementsByTagName("ul li"); // nie ma sensu
+document.getElementsByClassName("even");
+document.querySelector(".even");
