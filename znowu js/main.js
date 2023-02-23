@@ -1218,3 +1218,54 @@ document.getElementsByTagName("li");
 document.getElementsByTagName("ul li"); // nie ma sensu
 document.getElementsByClassName("even");
 document.querySelector(".even");
+/* 
+HTMLcolection jest to lista elementów HTML o określonym tagu pobrana z mtody DOM takiej jak getElementsByTagName()
+
+NodeList to lista wszystkich węzłów (node) w drzewie dom pobranych z metod takich jak querySelectorAll
+
+Głowna róznica między HTML Colection a NodeList polega na tym, że HTML Colection zawiera tylko elementy HTML, podczas gdy nodeList zawiera różne rodzje węzłów dom takie jak elementy atrybuty komentarze itp.
+
+HTML Colection jest żywą kolekcją co oznacza że odzwierciedla ona aktulny stan drzewa DOM podczas gdy nodeList jest statyczna kolekcją, która nie zmienia się nawet jeśli drzewo DOM jest modyfikowane.
+
+HTML Colection ma również kilka specyficznych metod takich jak NameItem, które pozwalaja na łatwe wyszukiwanie i dostęp do elementów po nazwie podczas gdy NodeList nie ma specjalnych metod.
+*/
+const liList1 = document.getElementsByClassName('li');
+// nie pobrało bo zamiest klasy mam podany tag
+const liList2 = document.getElementsByTagName('li');
+// teraz pobrało
+const liList3 = document.querySelectorAll('li');
+const liArray = [...liList2];
+const liArray2 = Array.from(liList2);
+// pobieranie atrybutów z elementów
+const h2 = document.querySelector('h2');
+console.log(h2.getAttribute('class'));
+console.log(h2.getAttribute('data-color'));
+console.log(h2.getAttribute('id'));
+
+h2.classList.contains("title");
+// modyfikowanie elementów
+// textContent
+const firstLi = document.querySelector("li:first-child");
+firstLi.textContent = "JS lepszy od PHP !!!!!!!!!!!"
+firstLi.innerHTML = "<strong>JS jest lepszy od PHP !!!!!!!!!!!</strong>"
+firstLi.style.fontSize = "3rem";
+// JS nie pozwala nadpisywać w CCS font-size, zatem używa notacji wielbłądziej, jeśli potrzebuje np. fontSize;
+firstLi.style.backgroundColor = "rgb(255,0,0)";
+document.body.style.backgroundColor = "#666";
+// class;
+// dodawanie(add);
+// odejmowanie(remove);
+// przełączanie(toggle) Klas;
+
+// 1. metoda toggle - przełącznik - jesli dana klasa jest to ją zabierz/ wyłącz, jeśli nie to dodaj
+firstLi.classList.toggle("space");
+// 2. metoda add(); - jesli klasa istnieje to nic nie rób, jeśli nie ma to dodaj 
+firstLi.classList.add("space");
+// 3.metoda remove(); - jesli dane coś istniej to to usuń, jeśli nie ma czegoś takiego to nic nie rób 
+firstLi.classList.remove("space");
+
+// nadpisywanie atrybutów - nie uzywa się słowa class, bo jest zarezerwowane ale zamiast niego nazwa właściwości brzmi className
+firstLi.className = "one two"; // ta właściwość w odróżnieniu od classList nadpisuje zawrtość, nie ważne czy była już jakoaś klasa przypisana czy nie
+firstLi.id = ""; // ???
+// przy pobieraniu mieliśmy getAttribute - przy modyfikowaniu mamy setAttribute
+firstLi.setAttribute('obiektówka w Pythonie');
