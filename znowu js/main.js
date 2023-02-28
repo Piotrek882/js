@@ -1269,3 +1269,76 @@ firstLi.className = "one two"; // ta właściwość w odróżnieniu od classList
 firstLi.id = ""; // ???
 // przy pobieraniu mieliśmy getAttribute - przy modyfikowaniu mamy setAttribute
 firstLi.setAttribute('obiektówka w Pythonie');
+firstLi.setAttribute('title', "po co sprawdzian???");
+// modyfikowanie wielu elementów
+const LiItems = [...document.getElementsByTagName("li")];
+// jezeli mam wiele elementów to zastanawieam się czy nie można skorzystać z pętli
+// for (let i = 0; i < LiItems.length; i++){
+//     LiItems[i].style.fontSize = "20x";
+//     LiItems[i].classList.add('red');
+// }
+
+// LiItems.forEach(function(item){
+//     item.style.textDecoration = "underline";
+//     item.style.fontsize = '20px';
+//     item.classList.add('red');
+// })
+// co by się stało kiedy skorzystam z innej metody???
+
+LiItems.forEach(function(item){
+    item.style.textDecoration = "underline";
+    item.style.fontsize = '20px';
+    item.classList.add('red');
+})
+
+// nasłuchiwanie i obsługa zdarzeń - oczekuje na jakieś zdarzenie
+// na czym nasłuchuje
+// window.addEventListener(); //nasłuchuje na oknie
+
+// przykład
+// 1.element  --> na co nasłuchuje?
+// 2.element --> co ma się stać
+// window.addEventListener("scroll",function () {
+//     console.log("scrolluje!!");
+// });
+
+// window.addEventListener("dbclick",function () {
+//     console.log("podwójne kliknięcie");
+// });
+
+// window.addEventListener("scroll", ()=> {
+//     console.log("scrolluje!!");
+// });
+
+// window.addEventListener("click",()=>{
+//     console.log("klikam pojedynczo");
+// });
+
+// const showScroll = function (){
+//     console.log("scroll");
+// }
+
+// window.addEventListener("scroll", showScroll);
+// // przykład
+// const showScroll = () =>{
+//     console.log("scroll");
+// }
+// window.addEventListener("scroll", showScroll);
+
+// co się stanie jeśli odwróci kolejność???
+
+// window.addEventListener("scroll", showScroll);
+// const showScroll = () =>{
+//     console.log("scroll");
+// }
+
+// window.addEventListener("scroll", showScroll);
+// function showScroll(){
+//     console.log("scroll");
+// }
+
+// przykład
+document.querySelector('h1').addEventListener("click",
+function () {
+    this.textContent += 'C#';    
+})
