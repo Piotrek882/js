@@ -474,7 +474,7 @@ for (let i = 0; i < guest.length; i++){
 //  tablica to obiekt złożony, wbudowany - zatem ma właściwości i metody, uporzadkowany (kolejność jest ważna), ma indeks (liczony od zera)
 // wystarczy wpisać [] i mamy tablicę
 // tablicę przypisujemy do zmiennej, żeby nie znikła
-
+/*
 // Przykład 1
 const nameList = ["Kasia", "Izabela", "Marek", "Dariusz"];
 // 2. mozemy utworzyć pustą(nie koniecznie pustą) tablicę, a następnie podawać elementy przez odwołanie do ineksu
@@ -483,7 +483,7 @@ const cityList = [];
 cityList[0] = 'Gliwice';
 cityList[1] = 'Warszawa';
 */
-
+/*
 //  Tworzenie tablicy za pomocą kostruktora
 // pamiętamy, że mamy: new String; new Number; new Boolean - tak możemy storzyć obiekt, odwzorowujący typ prosty - tworzenie pustej tablicy
 
@@ -634,7 +634,7 @@ showMessage();
 // function addNumbers(number1, number2){
 //     return number1 + number2;
 // }
-
+/*
 // addNumbers(2, 4);
 
 function addNumbers(x, y){
@@ -665,7 +665,7 @@ const showCourseName1 = function () {
 const nazwaFunkcjiCoRobi = new Function();
 */
 // powyższa funkcja jest pusta // rzadko używana
-
+/*
 // przykład 
 const textAlert = new Function("text", "alert(text)");
 // textAlert("działa");
@@ -696,6 +696,7 @@ const nazwaFunkcjiCoRobi = () => {};
  * przekazujemy więcej niż jeden parametr
  */
 ////////////////////////////////////////////////////////////////////
+/*
 const showMeTextArrowFunction = text => console.log(text);
 showMeTextArrowFunction("hej");
 ////////////////////////////////////////////////////////////////////
@@ -749,6 +750,7 @@ const divideBy5 = function (number) {
     return result4;
 }
 */
+/*
 // gorszy sposób
 const divideBy5 = function (number) {
     console.log(number / 5);    
@@ -1020,7 +1022,7 @@ console.log(colorID);
 //     console.log(userName);
 // }
 // showName();
-
+/*
 let userName = "Adam";
 function showName() {
     let userName = "Jan";
@@ -1171,7 +1173,7 @@ console.log(var1);
 console.log(var3);
 console.log(var2);
 */
-
+/*
 // kolejny przyład
 const a = "A w zakresie globalnym";
 let b = "B w zakresie globalnym";
@@ -1229,6 +1231,7 @@ HTML Colection jest żywą kolekcją co oznacza że odzwierciedla ona aktulny st
 
 HTML Colection ma również kilka specyficznych metod takich jak NameItem, które pozwalaja na łatwe wyszukiwanie i dostęp do elementów po nazwie podczas gdy NodeList nie ma specjalnych metod.
 */
+/*
 const liList1 = document.getElementsByClassName('li');
 // nie pobrało bo zamiest klasy mam podany tag
 const liList2 = document.getElementsByTagName('li');
@@ -1342,3 +1345,54 @@ document.querySelector('h1').addEventListener("click",
 function () {
     this.textContent += 'C#';    
 })
+
+document.querySelector('h').addEventListener('mousemove', function() {
+    this.textContent += "C#"
+    console.log("ruch myszką po h1, z niewiadomego powodu chcemy tam wpisać C#");
+})
+
+document.querySelector('h').addEventListener('click', function() {
+    this.textContent += "C#"
+    console.log("klik myszką po h1, z niewiadomego powodu chcemy tam wpisać C#");
+})
+
+const h1 = document.querySelector('h1'); // 1.pobiera
+
+const addText = function () { // 3.uruchamia się funkcja
+    this.textContent += 'js better than php';
+    h1.classList.add('red');
+}
+
+h1.addEventListener('click', addText); // 2. ustawia na klik
+
+/*
+const items = document.querySelectorAll('li');
+const addClassRed = function(){}
+items.addEventListener('click', addClassRed);
+*/ // błąd
+
+const items = document.querySelectorAll('li');
+const addClassRed = function(){
+    console.log('klik');
+}
+
+items.forEach((item)=>{
+    item.addEventListener('click', addClassRed);
+})
+
+
+// const liElement = document.createElement('li');
+// liElement.textContent = "js lepszy od php";
+// liElement.style.backgroundColor = "blue";
+// document.querySelector('ul').appendChild(liElement);
+
+// const liElement = document.createElement('div');
+// liElement.textContent = "ostatni div";
+// liElement.style.backgroundColor = "red";
+// document.querySelector('body').appendChild(liElement);
+
+const div = document.querySelector('div');
+
+div.addEventListener("click", function color(){
+    this.style.backgroundColor = "red";    
+});
