@@ -1380,7 +1380,6 @@ items.forEach((item)=>{
     item.addEventListener('click', addClassRed);
 })
 
-
 // const liElement = document.createElement('li');
 // liElement.textContent = "js lepszy od php";
 // liElement.style.backgroundColor = "blue";
@@ -1391,8 +1390,49 @@ items.forEach((item)=>{
 // liElement.style.backgroundColor = "red";
 // document.querySelector('body').appendChild(liElement);
 
-const div = document.querySelector('div');
+// const div = document.querySelector('div');
 
-div.addEventListener("click", function color(){
-    this.style.backgroundColor = "red";    
-});
+// div.addEventListener("click", function color(){
+//     this.style.backgroundColor = "red";    
+// });
+
+// template string
+
+const text1 = "text\ntext\ntext";
+// pisanie wielowierszowe lepiej zapewnia template string niz ponizszy przeykład
+/**
+const text3 = "
+text
+text
+text
+"
+ */
+const text2 = `text 
+text 
+text`;
+
+const yourName = "Nieiza";
+const greeting = "Welcome welcome " + yourName + "!";
+
+const yourName1 = "Nieiza";
+const greeting1 = `Welcome welcome ${yourName} !`;
+
+const userAge = [26, 70, 35, 36, 27, 34, 68, 29, 17];
+let sum = 0;
+for (let i = 0; i < userAge.length; i++) {
+  sum += userAge[i];
+}
+console.log(`Średni wiek użytkownika to ${sum / userAge.length}`);
+let now = new Date();
+console.log(`obecnie zegar wskazuje ${now.getHours() + ":" + now.getMinutes()}`);
+console.log(`obecnie zegar wskazuje ${new Date().toLocaleTimeString()}`);
+const cena = 10.99;
+const podatek = 0.23;
+const cenaZPodatkiem = cena + cena * podatek;
+console.log(Math.round(cenaZPodatkiem));
+let itemname = "pendrive";
+// let items = 20;
+// console.log(`właśnie sprzedałem jeden ${itemName}. Na stanie jest jeszcze ${items}`);
+
+let cena1 = prompt("Podaj cenę: " + parseFloat());
+console.log(`${cena1 > 50 ? "cena jest większa od 50" : "cena jest mniejsza od 50"}`);
