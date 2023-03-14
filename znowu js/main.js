@@ -1433,6 +1433,29 @@ console.log(Math.round(cenaZPodatkiem));
 let itemname = "pendrive";
 // let items = 20;
 // console.log(`właśnie sprzedałem jeden ${itemName}. Na stanie jest jeszcze ${items}`);
-
+/**
 let cena1 = prompt("Podaj cenę: " + parseFloat());
 console.log(`${cena1 > 50 ? "cena jest większa od 50" : "cena jest mniejsza od 50"}`);
+*/
+
+// hoisting 
+// deklaracje zmiennych i funkcji zostają przeniesione na początek
+// console.log(funkcja1);
+// const funkcja1 = function(){}
+
+funckja1();
+function funckja1(){
+    console.log('nie ma mnie tu');
+}
+// funkcja stworzona za pomocą deklaracji, a nie przypisania podlaga hoistingowi i może być wywowłana przed zadeklarowaniem
+// czyli można z niej skorzystać zanim się pojawi WOW
+
+// window a DOM
+// DOM - model strony internetowej stworzony na podstawie pliku HTML, której głównym elementem jest obiekt document
+// window - obiekt globalny dla środowiska uruchomieniowego jakim jest prezglądarka, zawiera on wiele właściwości i metod
+// DOM znajduje się window
+window.console.log("prosze poszukac konsoli!!!!");
+//window
+// a.metody w window
+// b.document.title - sprawdzanie właściwości 
+// 
