@@ -1458,4 +1458,36 @@ window.console.log("prosze poszukac konsoli!!!!");
 //window
 // a.metody w window
 // b.document.title - sprawdzanie właściwości 
-// 
+// document.domain
+
+const dzialanieWStringu = '2+2';
+console.log(eval(dzialanieWStringu));
+
+console.error("jakiś error");
+
+let zmienna1 = "jakiś tekst";
+if(isNaN(zmienna1)){
+    console.log(zmienna1 + " nie jest liczbą");
+}else console.log(zmienna1 + " jest liczbą");
+
+// właściowości window:
+window.innerHeight
+window.innerWidth
+window.scrollY
+/*
+setTimeout(()=>{
+    console.log('minelo 5 sekund');
+}, 5000)
+*/
+
+// setInterval(() => console.log(timer++), 1000);
+/*
+const showTime = function(){
+    time += 5;
+    console.log(`już ${time} sekund cie nie ma`);
+    setTimeout(showTime, 5000);
+}
+
+let time = 0;
+setTimeout(showTime, 5000);
+*/
