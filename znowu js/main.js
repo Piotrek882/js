@@ -1491,3 +1491,86 @@ const showTime = function(){
 let time = 0;
 setTimeout(showTime, 5000);
 */
+
+/* 
+document.addEventListener("scroll", tak)
+function tak(){
+    if(scrollY > 1000){
+        document.querySelector("body").style.backgroundColor = "red";
+    }
+}
+*/
+// wprowadzenie do obiektów
+// obiekt - nieuporządkowana lista (w doróżnieniu od tablicy) właściwości, która składa się z nazwy (klucza - łańcucha) i wartości
+// wartość może być dowolnym typem mp. prostrym , złożonym (np. funkcją, tablicą)
+// często o obiektach mówimy KEY - VALUE
+
+// tworzenie obiektu za pomocą konstruktora
+// new tworzy nowy obiekt, na którym jest wykonywana funkcja konstruktora. Konstruktor jest funkcją, która przchodzi przez ten obiekt i nadaje mu właściwości
+// Object() - konsruktor obiektu, czyli funkcja
+/*
+const car = new Object(); 
+
+const tablica = new Array();
+
+// przypisywanie obiektowi właściwości, notacja kropkowa
+car.name = 'Ford'; // notacja kropkowa
+// nazwaObiektu.nazwaWlasciwosci = przypisanieWartości;
+'TEXT'.length; 
+
+// przypisywanie właściwości obiektowi - notacja []
+car['age'] = 3;
+const cat = new Object();
+cat['eyeColor'] = 'red';
+car.color = function(){
+    console.log('red');
+}
+
+// konsola:
+
+// car['color']();
+// red
+
+// car.color();
+// red
+*/
+// const car = {} // aktualna metoda, tworzę pusty obiekt
+const dog = {
+    name: "Zbigniew",
+    age: 20,
+    'eye color': 'black',
+    barking: function () { //stary sposób - funkcja anonimowa
+        console.log('woof woof');
+    },
+    squeaking(){ // funkcja nazwana - nowy sposób
+        console.log('aaa uuu eee');
+    },
+
+}
+
+dog.newColor = false;
+dog.childrens = ['bobik', 'kisik', 'vega'];
+dog.newColor = true;
+
+// dog.fast();
+// dog.small();
+
+// delete dog.childrens;
+// // odwołanie do obiektu innej funkcji
+// const result = {
+//     value: 1,
+// }
+
+// function plus(){
+//     result.value++;
+//     value++;
+// }
+
+const counter = {
+    score: 0,
+    increment: function(){
+        this.score++;
+        console.log(this.score);
+    }
+}
+counter.increment();
