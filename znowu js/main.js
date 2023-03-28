@@ -1574,3 +1574,63 @@ const counter = {
     }
 }
 counter.increment();
+
+
+document.addEventListener("keydown", function(keyCode){
+    console.log(keyCode);
+})
+
+// console.log((0.1 + 0.2 === 0.3).toFixed(2));
+// console.log((0.1 * 100 + 0.2 * 100)/100);
+
+// Number.MIN_VALUE = 5e-324
+// Number.MAX_VALUE = 1.7976931348623157e+308
+// Number.POSITIVE_INFINITY = Infinity
+// Number.NEGATIVE_INFINITY = -Infinity
+
+// rzutowanie - konwersja jednego typu na inny
+
+// const value = '23';
+// const newValue = Number(value);
+// console.log(newValue);
+
+// const value = 'fgjskfjdfhksf';
+// const newValue = Number(value);
+// const newValue2 = Number.parseInt(value);
+// console.log(newValue, newValue2);
+
+// const value = '';
+// const newValue = Number(value);
+// const newValue2 = Number.parseInt(value);
+// console.log(newValue, newValue2);
+
+// const value = true;
+// const newValue = Number(value);
+// const newValue2 = Number.parseInt(value);
+// console.log(newValue, newValue2);
+
+// const value = '22.222';
+// const newValue = Number(value);
+// const newValue2 = Number.parseInt(value);
+// console.log(newValue, newValue2);
+
+// const value = '22.222';
+// const newValue = Number(value);
+// const newValue2 = Number.parseFloat(value);
+// console.log(newValue, newValue2);
+
+// string
+'izabela'.length;
+const izabela = 'izabela nie idzie do pracy bo nie chce';
+console.log(izabela.startsWith('izabela'));
+function izabelaIncludes(text){
+    includesText = izabela.indexOf(text);
+    if(includesText == 0){
+        return true;
+    } else return false
+}
+console.log(izabelaIncludes('izabela'));
+
+// jak się pojawiła metoda at()  ?
+// nad czym pracują programiści, jakie metody  ?
+// ecma script next - co wejdzie ?
