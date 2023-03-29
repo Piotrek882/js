@@ -2,7 +2,6 @@
     background: rgb(189, 189, 189);
     color: rgb(77, 77, 77);
 }
-  
 ::selection {
     background: rgb(189, 189, 189);
     color: rgb(77, 77, 77);
@@ -32,6 +31,7 @@ main{
     flex-direction: column;
 }
 #okno {
+    display: flex;
     flex-wrap: wrap;
     background-color: rgb(126, 126, 126);
     height: 100%;
@@ -43,8 +43,8 @@ main{
     display: flex;
     flex-direction: row;
 }
-#klawiatura > article {
-    color: white;
+#klawiatura > button {
+    color: rgb(0, 0, 0);
     font: bold ;
     font-size: 1.3em;
     display: flex;
@@ -58,22 +58,29 @@ main{
     align-items: center;
     box-sizing: border-box;
     box-shadow: 0.3em 0.3em rgba(0, 0, 0, 0.478);
+    background-color: #666;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-#klawiatura > article:hover {
+#klawiatura > button:hover {
     background-color: rgb(31, 31, 31);
     color: rgb(126, 126, 126);
     transition: background, color 0.3s ease-in-out;
     border: rgba(42, 41, 41, 0);
+    font-weight: bold;
+    cursor: pointer;
 }
 footer {
     display: flex;
     color: rgb(126, 126, 126);
     background-color: rgb(0, 0, 0);
     justify-content: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #pole {
     user-select: text;
     padding: 0em;
-    font-size: 7em;
+    font-size: 6.7em;
     margin: 0em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
