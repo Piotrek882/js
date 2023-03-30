@@ -1631,6 +1631,7 @@ function izabelaIncludes(text){
 }
 console.log(izabelaIncludes('izabela'));
 
+// na wtorek:
 // jak się pojawiła metoda at()  ?
 // nad czym pracują programiści, jakie metody  ?
 // ecma script next - co wejdzie ?
