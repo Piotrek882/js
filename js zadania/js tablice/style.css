@@ -1,0 +1,79 @@
+body *{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #667;
+}
+body{
+    background-color: #667;
+}
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+body::-moz-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+header{
+    font-size: 3rem;
+    background-color: #341090;
+    color: #fff;
+    border-radius: 25px;
+    text-align: center;
+    margin-bottom: 1%;
+}
+h1{
+    font-weight: 200;
+    background-color: #1daa37;
+    color: #fff;
+    text-align: center;
+}
+div{
+    border-radius: 25px;
+}
+.Table{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+section{
+    margin: 0 5% 0 1%;
+}
+.tableContainer{
+    border: solid 1px black;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5% auto 0.5% auto;
+}
+p{
+    font-weight: bold;
+}
+#electronics{
+    background-color: rgb(78, 149, 255);
+}
+#automotive{
+    background-color: #515151;
+}
+#children{
+    background-color: #ff4c4c;
+}
+#sport{
+    background-color: #c2b200;
+}
+#military{
+    background-color: #036300;
+}
+#health{
+    background-color: #45757d;
+}
+#culture{
+    background-color: #fff1b3;
+    color: black;
+}
+#bike{
+    background-color: #b94d00;
+}
+#office{
+    background-color: #ccb3ff;
+}
