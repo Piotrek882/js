@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2"
+  }
+}
