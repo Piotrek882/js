@@ -1,153 +1,220 @@
-let canvasWidth = document.body.clientWidth - 10;
-let canvasHeight = document.body.clientHeight - 10;
+const speed = 5;
 const canvas = document.createElement('canvas');
-canvas.width = canvasWidth;
-canvas.height = canvasHeight;
+canvas.width = 1200;
+canvas.height = 600;
+canvas.primeWidth = 1200;
+canvas.primeHeight = 600;
 document.body.appendChild(canvas);
-let canvasCurrentHeight;
-let canvasCurrentWidth;
 
 const ctx = canvas.getContext('2d');
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});
 
 const square = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  size: 50,
-  color: '#1e88e5'
+    x: 600,
+    y: 300,
+    size: 50,
+    color: '#1c6aad'
 };
 
-let enemy = {
-  x: 15 + getRandomInt(50),
-  y: 15 + getRandomInt(50),
-  size: 30,
-  color: '#f00'
-};
-
+let end = false;
 let mouseX = 0;
 let mouseY = 0;
-const speed = 7;
 
 function drawSquare() {
-  ctx.fillStyle = square.color;
-  ctx.fillRect(square.x - square.size / 2, square.y - square.size / 2, square.size, square.size);
+    ctx.fillStyle = square.color;
+    ctx.fillRect(square.x, square.y, square.size, square.size);
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+// function drawAim() {
+//     ctx.beginPath();
+//     ctx.moveTo(square.x + 25, square.y + 25);
+//     ctx.lineTo(mouseX, mouseY);
+//     ctx.moveTo(square.x + 25, square.y + 25);
+//     ctx.strokeStyle = 'rgba(0, 255, 0, 0.3)';
+//     ctx.lineWidth = 20;
+//     ctx.stroke();
+// }
 
-// let enemyX = getRandomInt(1500);
-// let enemyY = getRandomInt(600);
-// 
-function drawEnemy() {
-  ctx.fillStyle = '#f00';
-  ctx.fillRect(enemy.x, enemy.y, enemy.size, enemy.size);
-  }
+function drawAim() {
+    let aimLength = 100;
   
-  function drawAim() {
+    let dx = mouseX - (square.x + 25);
+    let dy = mouseY - (square.y + 25);
+    let distance = Math.sqrt(dx * dx + dy * dy);
+  
+    let aimX, aimY;
+  
+    if (distance > aimLength){
+      let ratio = aimLength / distance;
+      aimX = (square.x + 25) + dx * ratio;
+      aimY = (square.y + 25) + dy * ratio;
+    } else {
+      aimX = mouseX;
+      aimY = mouseY;
+    }
+  
     ctx.beginPath();
-    ctx.moveTo(square.x, square.y);
-    ctx.lineTo(mouseX, mouseY);
-    ctx.moveTo(square.x, square.y);
-    ctx.strokeStyle = '#f00';
-    ctx.lineWidth = 3;
-  ctx.stroke();
-}
-let step = 0;
+    ctx.moveTo(square.x + 25, square.y + 25);
+    ctx.lineTo(aimX, aimY);
+    ctx.strokeStyle = 'rgba(0, 255, 0, 0.4)';
+    ctx.lineWidth = 20;
+    ctx.stroke();
+  }  
 
 function update() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  //   const dx = mouseX - square.x;
-  //   const dy = mouseY - square.y;
-  //   const angle = Math.atan2(dy, dx);
-  //   square.x += Math.cos(angle) * speed;
-  //   square.y += Math.sin(angle) * speed;
-  
-  if (keys['a'] && square.x > 0+25) {
-    square.x -= speed;
-  } else if (keys['d'] && square.x < canvas.width-25) {
-    square.x += speed;
-  }
-  
-  if (keys['w'] && square.y > 0+25) {
-    square.y -= speed;
-  } else if (keys['s'] && square.y < canvas.height-25) {
-    square.y += speed;
-  }
-  if(step < 100){
-    enemy.x += 1;
-    step +=1;
-  } else if(step < 300){
-    enemy.y +=2;
-    step +=1;
-  } else if(step < 500){
-    enemy.x +=1;
-    enemy.y -=1;
-    step +=1;
-  } else if(step < 700){
-    enemy.x += 1;
-    enemy.y += 0.5;
-  }
-  
-  drawSquare();
-  drawAim();
-  drawEnemy();
-  
-  requestAnimationFrame(update);
+    if(end != true){
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (keys['a'] && square.x >= 0) {
+        square.x -= speed;
+    } else if (keys['d'] && square.x + 50 <= canvas.width) {
+        square.x += speed;
+    }
+
+    if (keys['w'] && square.y >= 0) {
+        square.y -= speed;
+    } else if (keys['s'] && square.y + 50 <= canvas.height) {
+        square.y += speed;
+    }
+
+    drawSquare();
+    drawEnemy();
+    drawAim();
+    hitCheck();
+
+    requestAnimationFrame(update);
+    }
 }
 
 function onMouseMove(e) {
-  mouseX = e.clientX - canvas.offsetLeft;
-  mouseY = e.clientY - canvas.offsetTop;
+    mouseX = e.clientX - canvas.offsetLeft;
+    mouseY = e.clientY - canvas.offsetTop;
 }
 
 function onKeyDown(e) {
-  keys[e.key] = true;
+    keys[e.key] = true;
 }
 
 function onKeyUp(e) {
-  keys[e.key] = false;
+    keys[e.key] = false;
 }
 
 const keys = {};
+
+let step = 0;
+
+const enemy = {
+    x: getRandomInt(50),
+    y: getRandomInt(50),
+    size: 30,
+    color: '#a00'
+};
+
+function enemyMovement() {
+    if (step < 100) {
+        enemy.x += 2;
+        enemy.y++;
+        step++
+    } else if (step < 200) {
+        enemy.y += 2;
+        step++;
+    } else if (step < 300) {
+        enemy.x += getRandomInt(4);
+        step++;
+    } else if (step < 400) {
+        enemy.y -= getRandomInt(2);
+        enemy.x += getRandomInt(2);
+        step++;
+    } else if (step < 500) {
+        enemy.x -= getRandomInt(2);
+        step++;
+    } else if (step < 600) {
+        enemy.x += getRandomInt(3);
+        enemy.y += getRandomInt(2);
+        step++;
+    } else if (step < 700) {
+        enemy.x += getRandomInt(4);
+        step++;
+    }
+}
+setInterval(enemyMovement, 10); 77
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function drawEnemy() {
+    ctx.fillStyle = enemy.color;
+    ctx.fillRect(enemy.x, enemy.y, enemy.size, enemy.size);
+}
 
 canvas.addEventListener('mousemove', onMouseMove);
 window.addEventListener('keydown', onKeyDown);
 window.addEventListener('keyup', onKeyUp);
 
-update();
 
-document.addEventListener('contextmenu', function(event) {
-  event.preventDefault();
-});
 
-function checkPlayer(){
-  canvasCurrentHeight = canvas.getAttribute('height');
-  canvasCurrentWidth = canvas.getAttribute('width');
-  if(square.x > canvasCurrentWidth){
-    square.x = canvasCurrentWidth - 25;
-  }
-  if(square.y > canvasCurrentHeight){
-    square.y = canvasCurrentHeight - 25;
-  }
-  if(enemy.x > canvasCurrentWidth - 30){
-    enemy.x -= 1;
-  }
-  if(enemy.y > canvasCurrentHeight - 30){
-    enemy.y -= 1;
-  }
-
+function limitEnemyMovement() {
+    if (enemy.x <= 0) {
+        enemy.x = 0;
+    }
+    if (enemy.x + enemy.size >= canvas.width) {
+        enemy.x = canvas.width - enemy.size;
+    }
+    if (enemy.y <= 0) {
+        enemy.y = 0;
+    }
+    if (enemy.y + enemy.size >= canvas.height) {
+        enemy.y = canvas.height - enemy.size;
+    }
 }
-// function breakCheck(){
-//   if(
-    
-//   ){
-//     alert('zderzenie');
-//   }
-// }
-// setInterval(breakCheck, 0.1);
+setInterval(limitEnemyMovement, 10);
+
+function hitCheck() {
+    if (enemy.x + 30 >= square.x && enemy.x <= square.x + 50 && enemy.y + 30 >= square.y && enemy.y <= square.y + 50) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#f00';
+        ctx.font = '50px Calibri';
+        ctx.fillText('GAME OVER', canvas.width/2 - canvas.width/12, canvas.height/2);
+        end = true;
+        canvas.style.cursor = 'default';
+    }
+}
+
+function enterFullscreen() {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.mozRequestFullScreen) {
+    document.documentElement.mozRequestFullScreen();
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) {
+    document.documentElement.msRequestFullscreen();
+  }
+}
+
+let section = document.getElementById('section');
+
+function fullscreenByButton(){
+    enterFullscreen();
+    section.style.display = 'none';
+    canvas.setAttribute('width', window.innerWidth - 10);
+    canvas.setAttribute('height', window.innerHeight + 130);
+}
+
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+function handleFullscreenChange() {
+  if (document.fullscreenElement === null) {
+    section.style.display = 'flex';
+    canvas.setAttribute('width', canvas.primeWidth);
+    canvas.setAttribute('height', canvas.primeHeight);
+  }
+}
+
+update();

@@ -1,16 +1,29 @@
 body{
-    background-color: #333;
-    cursor: none;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
+    background-color: #000;
+    color: #1c6aad;
 }
 canvas{
-    background-color: #999;
-    cursor: none;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
+    background-color: #444;
+    margin: auto;
+    cursor: crosshair;
+}
+#button{
+    display: block;
+    border: none;
+    border-radius: 22px;
+    background-color: #2fff00;
+    color: #080;
+    font-weight: bold;
+    cursor: pointer;
+    height: 2em;
+    margin: 0.5em;
+}
+section{
+    display: flex;
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
