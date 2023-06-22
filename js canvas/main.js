@@ -48,6 +48,7 @@ function update() {
 
   drawSquare();
   drawAim();
+  drawEnemy();
 
     requestAnimationFrame(update);
 }
@@ -67,8 +68,46 @@ function onKeyUp(e) {
 
 const keys = {};
 
+let step = 0;
+
+// function enemyMovement(){
+
+// }
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+const enemy = {
+    x: getRandomInt(50),
+    y: getRandomInt(50),
+    size: 30,
+    color: 'red'
+};
+
+function drawEnemy(){
+    ctx.fillStyle = enemy.color;
+    ctx.fillRect(enemy.x, enemy.y, enemy.size, enemy.size);
+}
+
 canvas.addEventListener('mousemove', onMouseMove);
 window.addEventListener('keydown', onKeyDown);
 window.addEventListener('keyup', onKeyUp);
 
 update();
+
+function limitEnemyMovement() {
+    if (enemy.x <= 0) {
+      enemy.x = 0;
+    }
+    if (enemy.x + enemy.size >= canvasCurrentWidth) {
+      enemy.x = canvasCurrentWidth - enemy.size;
+    }
+    if (enemy.y <= 0) {
+      enemy.y = 0;
+    }
+    if (enemy.y + enemy.size >= canvasCurrentHeight) {
+      enemy.y = canvasCurrentHeight - enemy.size;
+    }
+}
+setInterval(limitEnemyMovement, 10);
