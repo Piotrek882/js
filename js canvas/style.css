@@ -1,6 +1,7 @@
 body{
     background-color: #000;
     color: #1c6aad;
+    user-select: none;
 }
 canvas{
     background-color: #444;
@@ -26,4 +27,6 @@ p{
     justify-content: center;
     align-items: center;
     color: white;
+    font-family: Arial, Helvetica;
+    font-weight: bold;
 }

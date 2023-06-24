@@ -19,26 +19,54 @@ const square = {
     color: '#1c6aad'
 };
 
+let pointsEarn = true;
 let end = false;
 let mouseX = 0;
 let mouseY = 0;
+let points = 0;
 
 function drawSquare() {
     ctx.fillStyle = square.color;
     ctx.fillRect(square.x, square.y, square.size, square.size);
 }
 
-// function drawAim() {
-//     ctx.beginPath();
-//     ctx.moveTo(square.x + 25, square.y + 25);
-//     ctx.lineTo(mouseX, mouseY);
-//     ctx.moveTo(square.x + 25, square.y + 25);
-//     ctx.strokeStyle = 'rgba(0, 255, 0, 0.3)';
-//     ctx.lineWidth = 20;
-//     ctx.stroke();
-// }
+var bullet = {
+    x: square.x + 25,
+    y: square.y + 25,
+    // targetX: null,
+    // targetY: null,
+    slower: 40,
+    isFlying: false,
+    xfactor: null,
+    yfactor: null
+  };
+  
+  canvas.addEventListener('mousedown', function(event) {
+    if (event.button === 0 && bullet.isFlying == false) {
+      bullet.x = square.x + 25;
+      bullet.y = square.y + 25;
+      bullet.isFlying = true;
+      bullet.xfactor = (square.x + 25 - mouseX) / bullet.slower;
+      bullet.yfactor = (square.y + 25 - mouseY) / bullet.slower;
+    }
+  });
 
-function drawAim() {
+function drawBullet() {
+    if (bullet.isFlying == true) {
+      ctx.fillStyle = 'red';
+      ctx.beginPath();
+      ctx.arc(bullet.x, bullet.y, 5, 0, Math.PI * 2);
+      ctx.fill();
+      bullet.x -= bullet.xfactor;
+      bullet.y -= bullet.yfactor;
+
+      if (bullet.x < 0 || bullet.x > canvas.width || bullet.y < 0 || bullet.y > canvas.height) {
+        bullet.isFlying = false;
+      }
+    }
+}
+
+function drawAim(){
     let aimLength = 100;
   
     let dx = mouseX - (square.x + 25);
@@ -51,7 +79,7 @@ function drawAim() {
       let ratio = aimLength / distance;
       aimX = (square.x + 25) + dx * ratio;
       aimY = (square.y + 25) + dy * ratio;
-    } else {
+    } else{
       aimX = mouseX;
       aimY = mouseY;
     }
@@ -69,25 +97,30 @@ function update() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    
     if (keys['a'] && square.x >= 0) {
         square.x -= speed;
     } else if (keys['d'] && square.x + 50 <= canvas.width) {
         square.x += speed;
     }
-
+    
     if (keys['w'] && square.y >= 0) {
         square.y -= speed;
     } else if (keys['s'] && square.y + 50 <= canvas.height) {
         square.y += speed;
     }
-
+    
     drawSquare();
     drawEnemy();
     drawAim();
+    drawBullet();
     hitCheck();
-
+    ctx.fillStyle = '#000';
+    ctx.font = '20px Calibri';
+    ctx.fillText(`points: ${points}`, canvas.width - 100, 20);
+    
     requestAnimationFrame(update);
-    }
+}
 }
 
 function onMouseMove(e) {
@@ -216,5 +249,27 @@ function handleFullscreenChange() {
     canvas.setAttribute('height', canvas.primeHeight);
   }
 }
+
+function enemyHitCheck() {
+    if (bullet.x + 5 >= enemy.x && bullet.x <= enemy.x + 30 && bullet.y + 5 >= enemy.y && bullet.y <= enemy.y + 30 &&  pointsEarn == true) {
+        //alert('point');
+        points++;
+        pointsEarn = false;
+    }
+}
+setInterval(enemyHitCheck, 1);
+
+function enemyMissCheck() {
+    if (
+      bullet.x + 5 < enemy.x ||
+      bullet.x > enemy.x + 30 ||
+      bullet.y + 5 < enemy.y ||
+      bullet.y > enemy.y + 30
+    ) {
+      pointsEarn = true;
+    }
+}
+setInterval(enemyMissCheck, 1);
+  
 
 update();
