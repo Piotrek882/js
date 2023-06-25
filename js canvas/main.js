@@ -115,8 +115,8 @@ function update() {
     drawAim();
     drawBullet();
     hitCheck();
-    ctx.fillStyle = '#000';
-    ctx.font = '20px Calibri';
+    ctx.fillStyle = '#f00';
+    ctx.font = '30px Calibri';
     ctx.fillText(`points: ${points}`, canvas.width - 100, 20);
     
     requestAnimationFrame(update);
