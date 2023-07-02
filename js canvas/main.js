@@ -30,26 +30,33 @@ function drawSquare() {
     ctx.fillRect(square.x, square.y, square.size, square.size);
 }
 
-var bullet = {
+let bullet = {
     x: square.x + 25,
     y: square.y + 25,
     // targetX: null,
     // targetY: null,
-    slower: 40,
+    // slowerX: 40,
+    // slowerY: 40,
+    speed: 10,
     isFlying: false,
     xfactor: null,
     yfactor: null
-  };
-  
-  canvas.addEventListener('mousedown', function(event) {
-    if (event.button === 0 && bullet.isFlying == false) {
-      bullet.x = square.x + 25;
-      bullet.y = square.y + 25;
-      bullet.isFlying = true;
-      bullet.xfactor = (square.x + 25 - mouseX) / bullet.slower;
-      bullet.yfactor = (square.y + 25 - mouseY) / bullet.slower;
+};
+
+canvas.addEventListener('mousedown', function(event){
+    if (event.button === 0 && bullet.isFlying == false){
+        bullet.x = square.x + 25;
+        bullet.y = square.y + 25;
+        bullet.isFlying = true;
+        let dx = mouseX - (square.x + 25);
+        let dy = mouseY - (square.y + 25);
+        let distance = Math.sqrt(dx**2 + dy**2);
+        let unitX = dx / distance;
+        let unitY = dy / distance;
+        bullet.xfactor = unitX * bullet.speed;
+        bullet.yfactor = unitY * bullet.speed;
     }
-  });
+});
 
 function drawBullet() {
     if (bullet.isFlying == true) {
@@ -57,8 +64,8 @@ function drawBullet() {
       ctx.beginPath();
       ctx.arc(bullet.x, bullet.y, 5, 0, Math.PI * 2);
       ctx.fill();
-      bullet.x -= bullet.xfactor;
-      bullet.y -= bullet.yfactor;
+      bullet.x += bullet.xfactor;
+      bullet.y += bullet.yfactor;
 
       if (bullet.x < 0 || bullet.x > canvas.width || bullet.y < 0 || bullet.y > canvas.height) {
         bullet.isFlying = false;
@@ -270,6 +277,5 @@ function enemyMissCheck() {
     }
 }
 setInterval(enemyMissCheck, 1);
-  
 
 update();
