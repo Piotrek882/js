@@ -16,8 +16,13 @@ const square = {
     x: 600,
     y: 300,
     size: 50,
-    color: '#1c6aad'
 };
+
+const playerTank = new Image();
+playerTank.src = 'images/tank.png';
+
+const enemyTank = new Image();
+enemyTank.src = 'images/enemyTank.png';
 
 let pointsEarn = true;
 let end = false;
@@ -26,17 +31,12 @@ let mouseY = 0;
 let points = 0;
 
 function drawSquare() {
-    ctx.fillStyle = square.color;
-    ctx.fillRect(square.x, square.y, square.size, square.size);
+    ctx.drawImage(playerTank, square.x, square.y, square.size, square.size);
 }
 
 let bullet = {
     x: square.x + 25,
     y: square.y + 25,
-    // targetX: null,
-    // targetY: null,
-    // slowerX: 40,
-    // slowerY: 40,
     speed: 10,
     isFlying: false,
     xfactor: null,
@@ -74,7 +74,7 @@ function drawBullet() {
 }
 
 function drawAim(){
-    let aimLength = 100;
+    let aimLength = 70;
   
     let dx = mouseX - (square.x + 25);
     let dy = mouseY - (square.y + 25);
@@ -94,8 +94,8 @@ function drawAim(){
     ctx.beginPath();
     ctx.moveTo(square.x + 25, square.y + 25);
     ctx.lineTo(aimX, aimY);
-    ctx.strokeStyle = 'rgba(0, 255, 0, 0.4)';
-    ctx.lineWidth = 20;
+    ctx.strokeStyle = '#008c1c';
+    ctx.lineWidth = 10;
     ctx.stroke();
   }  
 
@@ -123,8 +123,8 @@ function update() {
     drawBullet();
     hitCheck();
     ctx.fillStyle = '#f00';
-    ctx.font = '20px Calibri';
-    ctx.fillText(`points: ${points}`, canvas.width - 100, 20);
+    ctx.font = 'bold 20px Calibri';
+    ctx.fillText(`POINTS: ${points}`, 5, 20);
     
     requestAnimationFrame(update);
 }
@@ -150,8 +150,9 @@ let step = 0;
 const enemy = {
     x: getRandomInt(50),
     y: getRandomInt(50),
-    size: 30,
-    color: '#a00'
+    xSize: 50,
+    ySize: 50,
+    color: 'red'
 };
 
 function enemyMovement() {
@@ -181,22 +182,19 @@ function enemyMovement() {
         step++;
     }
 }
-setInterval(enemyMovement, 10); 77
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
 function drawEnemy() {
-    ctx.fillStyle = enemy.color;
-    ctx.fillRect(enemy.x, enemy.y, enemy.size, enemy.size);
+
+    ctx.drawImage(enemyTank, enemy.x, enemy.y, enemy.xSize, enemy.ySize);
 }
 
 canvas.addEventListener('mousemove', onMouseMove);
 window.addEventListener('keydown', onKeyDown);
 window.addEventListener('keyup', onKeyUp);
-
-
 
 function limitEnemyMovement() {
     if (enemy.x <= 0) {
@@ -212,10 +210,9 @@ function limitEnemyMovement() {
         enemy.y = canvas.height - enemy.size;
     }
 }
-setInterval(limitEnemyMovement, 10);
 
 function hitCheck() {
-    if (enemy.x + 30 >= square.x && enemy.x <= square.x + 50 && enemy.y + 30 >= square.y && enemy.y <= square.y + 50) {
+    if (enemy.x + enemy.xSize >= square.x && enemy.x <= square.x + square.size && enemy.y + enemy.ySize >= square.y && enemy.y <= square.y + square.size) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = '#000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -258,24 +255,27 @@ function handleFullscreenChange() {
 }
 
 function enemyHitCheck() {
-    if (bullet.x + 5 >= enemy.x && bullet.x <= enemy.x + 30 && bullet.y + 5 >= enemy.y && bullet.y <= enemy.y + 30 &&  pointsEarn == true) {
+    if (bullet.x + 5 >= enemy.x && bullet.x <= enemy.x + enemy.xSize && bullet.y + 5 >= enemy.y && bullet.y <= enemy.y + enemy.ySize &&  pointsEarn == true) {
         //alert('point');
         points++;
         pointsEarn = false;
     }
 }
-setInterval(enemyHitCheck, 1);
 
 function enemyMissCheck() {
     if (
       bullet.x + 5 < enemy.x ||
-      bullet.x > enemy.x + 30 ||
+      bullet.x > enemy.x + 50 ||
       bullet.y + 5 < enemy.y ||
-      bullet.y > enemy.y + 30
+      bullet.y > enemy.y + 50
     ) {
       pointsEarn = true;
     }
 }
+
+setInterval(enemyMovement, 10);
+setInterval(limitEnemyMovement, 10);
+setInterval(enemyHitCheck, 1);
 setInterval(enemyMissCheck, 1);
 
 update();
