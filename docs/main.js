@@ -29,6 +29,7 @@ let end = false;
 let mouseX = 0;
 let mouseY = 0;
 let points = 0;
+let enemyIsAlive = true;
 
 function drawSquare() {
     ctx.drawImage(playerTank, square.x, square.y, square.size, square.size);
@@ -43,8 +44,15 @@ let bullet = {
     yfactor: null
 };
 
+let squareCenterShotPosition = {
+    x: 0,
+    y: 0
+};
+
 canvas.addEventListener('mousedown', function(event){
     if (event.button === 0 && bullet.isFlying == false){
+        squareCenterShotPosition.x = square.x + 25;
+        squareCenterShotPosition.y = square.y + 25;
         bullet.x = square.x + 25;
         bullet.y = square.y + 25;
         bullet.isFlying = true;
@@ -58,12 +66,27 @@ canvas.addEventListener('mousedown', function(event){
     }
 });
 
+let dx;
+let dy;
+let distance;
+
+function distanceCheck (){
+    dx = bullet.x - squareCenterShotPosition.x;
+    dy = bullet.y - squareCenterShotPosition.y;
+    distance = Math.sqrt(dx * dx + dy * dy);
+}
+setInterval(distanceCheck, 1);
+
 function drawBullet() {
     if (bullet.isFlying == true) {
-      ctx.fillStyle = 'red';
-      ctx.beginPath();
-      ctx.arc(bullet.x, bullet.y, 5, 0, Math.PI * 2);
-      ctx.fill();
+
+      if(distance > 72.5){
+        ctx.fillStyle = 'red';
+        ctx.beginPath();
+        ctx.arc(bullet.x, bullet.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
       bullet.x += bullet.xfactor;
       bullet.y += bullet.yfactor;
 
@@ -73,31 +96,34 @@ function drawBullet() {
     }
 }
 
-function drawAim(){
+function drawAim() {
     let aimLength = 70;
   
     let dx = mouseX - (square.x + 25);
     let dy = mouseY - (square.y + 25);
     let distance = Math.sqrt(dx * dx + dy * dy);
   
-    let aimX, aimY;
+    let normalizedDx = dx / distance;
+    let normalizedDy = dy / distance;
   
-    if (distance > aimLength){
-      let ratio = aimLength / distance;
-      aimX = (square.x + 25) + dx * ratio;
-      aimY = (square.y + 25) + dy * ratio;
-    } else{
-      aimX = mouseX;
-      aimY = mouseY;
-    }
-  
+    let aimX = (square.x + 25) + normalizedDx * aimLength;
+    let aimY = (square.y + 25) + normalizedDy * aimLength;
+
+    ctx.beginPath();
+    ctx.moveTo(square.x + 25, square.y + 25);
+    ctx.lineTo(aimX, aimY);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 14;
+    ctx.stroke();
+
     ctx.beginPath();
     ctx.moveTo(square.x + 25, square.y + 25);
     ctx.lineTo(aimX, aimY);
     ctx.strokeStyle = '#008c1c';
     ctx.lineWidth = 10;
     ctx.stroke();
-  }  
+ 
+}   
 
 function update() {
     if(end != true){
@@ -188,8 +214,9 @@ function getRandomInt(max) {
 }
 
 function drawEnemy() {
-
-    ctx.drawImage(enemyTank, enemy.x, enemy.y, enemy.xSize, enemy.ySize);
+    if(enemyIsAlive == true){
+        ctx.drawImage(enemyTank, enemy.x, enemy.y, enemy.xSize, enemy.ySize);
+    }
 }
 
 canvas.addEventListener('mousemove', onMouseMove);
@@ -254,7 +281,7 @@ function handleFullscreenChange() {
   }
 }
 
-function enemyHitCheck() {
+function enemyHitCheck(){
     if (bullet.x + 5 >= enemy.x && bullet.x <= enemy.x + enemy.xSize && bullet.y + 5 >= enemy.y && bullet.y <= enemy.y + enemy.ySize &&  pointsEarn == true) {
         //alert('point');
         points++;
@@ -262,7 +289,7 @@ function enemyHitCheck() {
     }
 }
 
-function enemyMissCheck() {
+function enemyMissCheck(){
     if (
       bullet.x + 5 < enemy.x ||
       bullet.x > enemy.x + 50 ||
