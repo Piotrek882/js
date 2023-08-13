@@ -21,7 +21,7 @@ const square = {
 const playerTank = new Image();
 playerTank.src = 'images/tank.png';
 
-const enemyTank = new Image();
+let enemyTank = new Image();
 enemyTank.src = 'images/enemyTank.png';
 
 let pointsEarn = true;
@@ -30,6 +30,16 @@ let mouseX = 0;
 let mouseY = 0;
 let points = 0;
 let enemyIsAlive = true;
+let enemyHit = false;
+function enemyDamageEffect(){
+    if(enemyHit == true){
+        enemyTank.src = 'images/enemyTankRed.png';
+        setTimeout(function(){
+            enemyTank.src = 'images/enemyTank.png';
+            enemyHit = false;
+        },250);
+    }
+}
 
 function drawSquare() {
     ctx.drawImage(playerTank, square.x, square.y, square.size, square.size);
@@ -142,7 +152,11 @@ function update() {
     } else if (keys['s'] && square.y + 50 <= canvas.height) {
         square.y += speed;
     }
-    
+    enemyMovement()
+    limitEnemyMovement()
+    enemyHitCheck()
+    enemyMissCheck()
+    enemyDamageEffect()
     drawSquare();
     drawEnemy();
     drawAim();
@@ -286,6 +300,8 @@ function enemyHitCheck(){
         //alert('point');
         points++;
         pointsEarn = false;
+        bullet.isFlying = false;
+        enemyHit = true;
     }
 }
 
@@ -299,10 +315,5 @@ function enemyMissCheck(){
       pointsEarn = true;
     }
 }
-
-setInterval(enemyMovement, 10);
-setInterval(limitEnemyMovement, 10);
-setInterval(enemyHitCheck, 1);
-setInterval(enemyMissCheck, 1);
 
 update();
