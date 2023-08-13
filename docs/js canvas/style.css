@@ -1,0 +1,32 @@
+body{
+    background-color: #000;
+    /* color: rgb(160, 0, 0); */
+    user-select: none;
+}
+canvas{
+    background-color: #706340;
+    margin: auto;
+    cursor: crosshair;
+}
+#button{
+    display: block;
+    border: none;
+    border-radius: 22px;
+    background-color: #2fff00;
+    color: #080;
+    font-weight: bold;
+    cursor: pointer;
+    height: 2em;
+    margin: 0.5em;
+}
+section{
+    display: flex;
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, Helvetica;
+    font-weight: bold;
+}
