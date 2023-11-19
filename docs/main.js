@@ -2,9 +2,19 @@ const speed = 5;
 const canvas = document.createElement('canvas');
 canvas.width = 1200;
 canvas.height = 600;
-canvas.primeWidth = 1200;
-canvas.primeHeight = 600;
-document.body.appendChild(canvas);
+canvas.primeWidth = window.innerWidth - 50;
+canvas.primeHeight = window.innerHeight - 50;
+
+let rightCanvaswidth;
+let rightCanvasheight;
+
+function appendCanvas(){
+    rightCanvaswidth = window.innerWidth - 50;
+    rightCanvasheight = window.innerHeight - 50;
+    canvas.width = rightCanvaswidth;
+    canvas.height = rightCanvasheight;
+    document.body.appendChild(canvas);
+}
 
 const ctx = canvas.getContext('2d');
 
@@ -12,7 +22,7 @@ document.addEventListener('contextmenu', function(event) {
     event.preventDefault();
 });
 
-const square = {
+let square = {
     x: 600,
     y: 300,
     size: 50,
@@ -135,8 +145,30 @@ function drawAim() {
  
 }   
 
+let fullscreenNow = false;
+let animationId;
+let canvasExist = false;
+
+function fullscreenCheck(){
+    if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        fullscreenNow = true;
+    } else {
+        fullscreenNow = false;
+    }
+
+    if(!fullscreenNow){
+        cancelAnimationFrame(animationId);
+    }else{
+        animationId = requestAnimationFrame(update);
+    }
+    if(!canvasExist && fullscreenNow){
+        appendCanvas();
+        canvasExist = true;
+    }
+} setInterval(fullscreenCheck, 20);
+
 function update() {
-    if(end != true){
+    if(!end /* && fullscreenNow */){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -165,8 +197,6 @@ function update() {
     ctx.fillStyle = '#f00';
     ctx.font = 'bold 20px Calibri';
     ctx.fillText(`POINTS: ${points}`, 5, 20);
-    
-    requestAnimationFrame(update);
 }
 }
 
@@ -265,6 +295,8 @@ function hitCheck() {
     }
 }
 
+const popup = document.getElementById("section");
+
 function enterFullscreen() {
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen();
@@ -275,6 +307,9 @@ function enterFullscreen() {
   } else if (document.documentElement.msRequestFullscreen) {
     document.documentElement.msRequestFullscreen();
   }
+  popup.style.display = 'none';
+  canvas.setAttribute('height', rightCanvasheight);
+  canvas.setAttribute('width', rightCanvaswidth);
 }
 
 let section = document.getElementById('section');

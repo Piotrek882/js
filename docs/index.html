@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>gra canvas</title>
+    <link rel="icon" type="image" href="images/tank_icon.png">
+    <title>Christmas War</title>
 </head>
 <body>
-    <section id="section">
-        <button id="button" onclick="fullscreenByButton()">FULLSCREEN</button>
-        <p>&#8592; Click it for better experience.</p>
+    <section class="popup-animation" id="section">
+        <div id="content">
+            <h2>Przełącz się na tryb pełnoekranowy.</h2>
+        <button id="fullscreenButton" onclick="enterFullscreen()">Przełącz</button>
+        </div>
     </section>
     <script src="main.js"></script>
 </body>
