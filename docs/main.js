@@ -26,6 +26,7 @@ let square = {
     x: 600,
     y: 300,
     size: 50,
+    hp: 100
 };
 
 const playerTank = new Image();
@@ -41,6 +42,7 @@ let mouseY = 0;
 let points = 0;
 let enemyIsAlive = true;
 let enemyHit = false;
+
 function enemyDamageEffect(){
     if(enemyHit == true){
         enemyTank.src = 'images/enemyTankRed.png';
@@ -95,7 +97,6 @@ function distanceCheck (){
     dy = bullet.y - squareCenterShotPosition.y;
     distance = Math.sqrt(dx * dx + dy * dy);
 }
-setInterval(distanceCheck, 1);
 
 function drawBullet() {
     if (bullet.isFlying == true) {
@@ -168,7 +169,7 @@ function fullscreenCheck(){
 } setInterval(fullscreenCheck, 20);
 
 function update() {
-    if(!end /* && fullscreenNow */){
+    if(!end){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -184,16 +185,21 @@ function update() {
     } else if (keys['s'] && square.y + 50 <= canvas.height) {
         square.y += speed;
     }
-    enemyMovement()
-    limitEnemyMovement()
-    enemyHitCheck()
-    enemyMissCheck()
-    enemyDamageEffect()
+    if(enemy.hp > 0){
+        enemyMovement();
+        limitEnemyMovement();
+        enemyHitCheck();
+        enemyMissCheck();
+        enemyDamageEffect();
+        drawEnemy();
+        hitCheck();
+        drawEnemyHealthBar();
+    }
+    distanceCheck();
     drawSquare();
-    drawEnemy();
     drawAim();
     drawBullet();
-    hitCheck();
+    drawPlayerHealthBar();
     ctx.fillStyle = '#f00';
     ctx.font = 'bold 20px Calibri';
     ctx.fillText(`POINTS: ${points}`, 5, 20);
@@ -222,8 +228,23 @@ const enemy = {
     y: getRandomInt(50),
     xSize: 50,
     ySize: 50,
-    color: 'red'
+    color: 'red',
+    hp: 100
 };
+
+function drawEnemyHealthBar(){
+    ctx.fillStyle = '#000';
+    ctx.fillRect(enemy.x - 10, enemy.y - 15, 70, 5);
+    ctx.fillStyle = '#008c1c';
+    ctx.fillRect(enemy.x - 10, enemy.y - 15, enemy.hp/100 * 70, 5);
+}
+
+function drawPlayerHealthBar(){
+    ctx.fillStyle = '#000';
+    ctx.fillRect(square.x - 10, square.y - 15, 70, 5);
+    ctx.fillStyle = '#008c1c';
+    ctx.fillRect(square.x - 10, square.y - 15, square.hp/100 * 70, 5);
+}
 
 function enemyMovement() {
     if (step < 100) {
@@ -332,11 +353,15 @@ function handleFullscreenChange() {
 
 function enemyHitCheck(){
     if (bullet.x + 5 >= enemy.x && bullet.x <= enemy.x + enemy.xSize && bullet.y + 5 >= enemy.y && bullet.y <= enemy.y + enemy.ySize &&  pointsEarn == true) {
-        //alert('point');
         points++;
         pointsEarn = false;
         bullet.isFlying = false;
         enemyHit = true;
+        if(enemy.hp > 0){
+            enemy.hp -= 10;
+        }else if(enemy.hp == 0){
+            points += 10;
+        }
     }
 }
 

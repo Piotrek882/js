@@ -1,6 +1,5 @@
 body{
-    background-color: #000;
-    /* color: rgb(160, 0, 0); */
+    background-color: #000000;
     user-select: none;
     display: flex;
     justify-content: center;
@@ -26,7 +25,7 @@ canvas{
     position: fixed;
     background-color: rgb(0, 82, 153);
     z-index: 1;
-    margin: 2em;
+    margin: 15em;
     border-radius: 22px;
     width: 50%;
     font-family: Arial, Helvetica, sans-serif;
