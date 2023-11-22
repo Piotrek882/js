@@ -316,40 +316,6 @@ function hitCheck() {
     }
 }
 
-const popup = document.getElementById("section");
-
-function enterFullscreen() {
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
-  } else if (document.documentElement.mozRequestFullScreen) {
-    document.documentElement.mozRequestFullScreen();
-  } else if (document.documentElement.webkitRequestFullscreen) {
-    document.documentElement.webkitRequestFullscreen();
-  } else if (document.documentElement.msRequestFullscreen) {
-    document.documentElement.msRequestFullscreen();
-  }
-  popup.style.display = 'none';
-  canvas.setAttribute('height', rightCanvasheight);
-  canvas.setAttribute('width', rightCanvaswidth);
-}
-
-let section = document.getElementById('section');
-
-function fullscreenByButton(){
-    enterFullscreen();
-    section.style.display = 'none';
-    canvas.setAttribute('width', window.innerWidth - 10);
-    canvas.setAttribute('height', window.innerHeight + 130);
-}
-
-document.addEventListener('fullscreenchange', handleFullscreenChange);
-function handleFullscreenChange() {
-  if (document.fullscreenElement === null) {
-    section.style.display = 'flex';
-    canvas.setAttribute('width', canvas.primeWidth);
-    canvas.setAttribute('height', canvas.primeHeight);
-  }
-}
 
 function enemyHitCheck(){
     if (bullet.x + 5 >= enemy.x && bullet.x <= enemy.x + enemy.xSize && bullet.y + 5 >= enemy.y && bullet.y <= enemy.y + enemy.ySize &&  pointsEarn == true) {

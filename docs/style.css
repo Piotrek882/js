@@ -75,3 +75,19 @@ p{
     font-family: Arial, Helvetica;
     font-weight: bold;
 }
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+}
+@font-face {
+    font-family: freshman;
+    src: url(Freshman-POdx.ttf);
+}
+header{
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
+    font-family: freshman;
+    font-size: 3em;
+}
